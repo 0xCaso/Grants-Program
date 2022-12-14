@@ -12,7 +12,7 @@
 
 The lack of options for loans collateralized by NFTs is the consequence of the larger challenge of NFT liquidity and defining the NFT assets’ price. The same problem fungible (ERC-20) tokens faced before AMMs (automated market makers) were introduced. Once it is solved and an efficient price discovery mechanism is created, NFTs backed loans will experience a boom.
 
-In the overall market, loans can release asset values and provide the NFT with much-needed liquidity.
+In the overall market, loans can release asset and provide the NFT with much-needed liquidity.
 
 The existing NFT lending platforms in the market, including NFTfi, UpShot One, NFT20, and other projects, all adopt the P2P lending model. The disadvantages are that there is no NFT price evaluation mechanism, and it is difficult for debtors and creditors to find the exact matching businesses. In addition, NFT liquidity is extremely limited. So, the lenders have to bear a lot of risks in P2P lending.
 
