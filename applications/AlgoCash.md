@@ -3,7 +3,7 @@
 > This document is referenced in the terms and conditions and therefore needs to contain all the required information. Don't remove any of the mandatory parts presented in bold letters or as headlines! See the [Open Grants Program Process](https://github.com/w3f/Open-Grants-Program/blob/master/README_2.md) on how to submit a proposal.
 
 * **Team Name:** Reserve Labs
-* **Payment Address:** DAI Address: 0x3f91475fbd0c3d9c676d39af071691c1cf635f0b
+* **Payment Address:** DAI Address: 
 
 ## Project Overview
 
