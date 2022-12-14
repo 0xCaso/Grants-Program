@@ -33,4 +33,4 @@ jobs:
             token: ${{ secrets.MATRIX_TOKEN }}
             channel: ${{ secrets.MATRIX_CHANNEL_ID }}
             message: |
-              Hey! Website build just failed ;(
+              ${{ github.ref }}
