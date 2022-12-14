@@ -1,44 +1,40 @@
 name: Test markdown
 
 on:
-  issue_comment:                                     
-    types: [created, edited]
+  pull_request:
+    types:
+      - closed
 
 jobs:
-  build:
-    name: build
-    if: |
-      ${{ github.event.issue.pull_request }} &&
-      contains(github.event.comment.body, '/test')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: xt0rted/pull-request-comment-branch@v1
-        id: comment-branch
-      - uses: actions/checkout@master
-        with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16.16.0"
-      - name: yarn build
-        run: |
-          git config --global user.email "grants-deployer@users.noreply.github.com"
-          git config --global user.name "grants-deployer"
-          echo "machine github.com login grants-deployer password ${{ secrets.ACCESS_KEY }}" > ~/.netrc
-          yarn && yarn build
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: comment failure
-        if: ${{ failure() }}
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: | 
-            Docusaurus compilation unsuccessful.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: comment success
-        if: ${{ success() }}
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: | 
-            Docusaurus compilation successful.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  if_merged:
+      name: build
+      if: github.event.pull_request.merged
+      runs-on: ubuntu-latest
+      steps:
+        - uses: xt0rted/pull-request-comment-branch@v1
+          id: comment-branch
+        - name: Checkout
+          uses: actions/checkout@v3
+        - uses: actions/setup-node@v2
+          with:
+            node-version: "16.16.0"
+        - name: yarn build
+          run: |
+            git config --global user.email "grants-deployer@users.noreply.github.com"
+            git config --global user.name "grants-deployer"
+            echo "machine github.com login grants-deployer password ${{ secrets.ACCESS_KEY }}" > ~/.netrc
+            yarn && yarn build
+        - name: comment failure
+          if: ${{ failure() }}
+          uses: thollander/actions-comment-pull-request@v2
+          with:
+            message: | 
+              Docusaurus compilation unsuccessful.
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: comment success
+          if: ${{ success() }}
+          uses: thollander/actions-comment-pull-request@v2
+          with:
+            message: | 
+              Docusaurus compilation successful.
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
