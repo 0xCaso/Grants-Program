@@ -26,15 +26,21 @@ jobs:
             yarn && yarn build
         - name: comment failure
           if: ${{ failure() }}
-          uses: thollander/actions-comment-pull-request@v2
+          id: matrix-chat-message-failure
+          uses: fadenb/matrix-chat-message@v0.0.6
           with:
-            message: | 
-              Docusaurus compilation unsuccessful.
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        - name: comment success
+            homeserver: 'matrix.web3.foundation'
+            token: ${{ secrets.MATRIX_TOKEN }}
+            channel: '!AxFrBIpKNbndpxnhYU:web3.foundation'
+            message: |
+              Hey! Website build just failed ;(
+        - name: send success matrix message
           if: ${{ success() }}
-          uses: thollander/actions-comment-pull-request@v2
+          id: matrix-chat-message-success
+          uses: fadenb/matrix-chat-message@v0.0.6
           with:
-            message: | 
-              Docusaurus compilation successful.
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            homeserver: 'matrix.web3.foundation'
+            token: ${{ secrets.MATRIX_TOKEN }}
+            channel: '!AxFrBIpKNbndpxnhYU:web3.foundation'
+            message: |
+              Hey! Website build just succeeded :)
