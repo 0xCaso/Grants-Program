@@ -24,7 +24,7 @@ jobs:
             git config --global user.name "grants-deployer"
             echo "machine github.com login grants-deployer password ${{ secrets.ACCESS_KEY }}" > ~/.netrc
             yarn && yarn build
-        - name: comment failure
+        - name: send failure message on matrix channel
           if: ${{ failure() }}
           id: matrix-chat-message-failure
           uses: fadenb/matrix-chat-message@v0.0.6
@@ -34,13 +34,3 @@ jobs:
             channel: '!AxFrBIpKNbndpxnhYU:web3.foundation'
             message: |
               Hey! Website build just failed ;(
-        - name: send success matrix message
-          if: ${{ success() }}
-          id: matrix-chat-message-success
-          uses: fadenb/matrix-chat-message@v0.0.6
-          with:
-            homeserver: 'matrix.web3.foundation'
-            token: ${{ secrets.MATRIX_TOKEN }}
-            channel: '!AxFrBIpKNbndpxnhYU:web3.foundation'
-            message: |
-              Hey! Website build just succeeded :)
