@@ -31,6 +31,6 @@ jobs:
           with:
             homeserver: 'matrix.web3.foundation'
             token: ${{ secrets.MATRIX_TOKEN }}
-            channel: '!AxFrBIpKNbndpxnhYU:web3.foundation'
+            channel: ${{ secrets.MATRIX_CHANNEL_ID }}
             message: |
               Hey! Website build just failed ;(
