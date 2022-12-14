@@ -11,10 +11,10 @@ jobs:
       if: github.event.pull_request.merged
       runs-on: ubuntu-latest
       steps:
-        - uses: xt0rted/pull-request-comment-branch@v1
-          id: comment-branch
         - name: Checkout
           uses: actions/checkout@v3
+          with:
+            ref: ${{ steps.comment-branch.outputs.head_ref }}
         - uses: actions/setup-node@v2
           with:
             node-version: "16.16.0"
