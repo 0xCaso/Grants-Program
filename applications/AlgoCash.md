@@ -9,7 +9,7 @@
 
 ### Overview
 
-The price volatility of cryptocurrencies is a major blocker for mass adoption. Their rapid change in fiat-denominated value causes payment values to vary even during settlement times, being highly inconvenient to merchants that handle them.
+The price of cryptocurrencies is a major blocker for mass adoption. Their rapid change in fiat-denominated value causes payment values to vary even during settlement times, being highly inconvenient to merchants that handle them.
 
 Stablecoins are cryptocurrencies with an exchange rate peg with existing fiat currencies or a fiat-related index, thereby drastically increasing their usefulness as a payment medium.
 
