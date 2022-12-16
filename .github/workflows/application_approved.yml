@@ -18,12 +18,12 @@ jobs:
         run: echo 'APPROVALS=3' >> $GITHUB_ENV
       - if: contains(github.event.pull_request.body, '[x] **Level 3**')
         run: echo 'APPROVALS=5' >> $GITHUB_ENV
-      - run: echo 'COMMENTS=14' >> $GITHUB_ENV
+      - run: echo 'COMMENTS=20' >> $GITHUB_ENV
       - id: 'reviews'
         uses: 'jrylan/github-action-reviews-counter@main'
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-      - if: ${{ steps.reviews.outputs.commented == env.COMMENTS && !(github.event.pull_request.state == "merged") }}
+      - if: ${{ steps.reviews.outputs.commented == env.COMMENTS && !(github.event.pull_request.state == 'merged') }}
         run: echo 'MSG="READY TO MERGE"' >> $GITHUB_ENV
       - uses: fadenb/matrix-chat-message@v0.0.6
         with:
