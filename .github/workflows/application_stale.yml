@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: list all open pull requests
         id: list
-        uses: andrea-armstrong/github-list-pull-requests@v1.0
+        uses: andrea-armstrong/github-list-pull-requests@v1.0.0
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           state: 'open'
