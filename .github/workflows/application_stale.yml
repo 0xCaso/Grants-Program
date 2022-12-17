@@ -1,0 +1,35 @@
+name: Stale checker
+
+on:
+  schedule:
+    - cron: '16 9 * * *'
+
+jobs:
+  mark_as_stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: list all open pull requests
+        id: list
+        uses: actions/github-list-pull-requests@v1.0
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          state: 'open'
+      - name: output
+        run: echo '${{ steps.list.outputs.pullRequestNumbers }}'
+      # - uses: 0xCaso/find-comment@505676727409c00e97cdfb0d06b67e387eec5404
+      #   id: fc
+      #   with:
+      #     direction: last
+      # - run: |
+      #     now=$(date)
+      #     deadline=$(date -d "${{ steps.reviews.fc.comment-date }}+14 days")
+      #     echo "NOW=$now" >> $GITHUB_ENV
+      #     echo "DEADLINE=$deadline" >> $GITHUB_ENV
+      # - run: |
+      #     [[ "${{ env.NOW }}" > "${{ env.DEADLINE }}" ]] &&
+      #     echo "STALE=1" >> $GITHUB_ENV
+      # - if: ${{ env.STALE }}
+      #   run:
+      
+      
+
