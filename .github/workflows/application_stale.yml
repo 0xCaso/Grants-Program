@@ -2,7 +2,7 @@ name: Stale checker
 
 on:
   schedule:
-    - cron: '18 8 * * *'
+    - cron: "*/5 * * * *"
 
 jobs:
   mark_as_stale:
