@@ -13,11 +13,7 @@ jobs:
       with:
         result-encoding: string
         script: |
-          const openPRs = await github.rest.pulls.list({
-            state: "open",
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-          });
+          const openPRs = await (await fetch("https://api.github.com/repos/w3f/Grants-Program/pulls")).json();
           let closed = [];
           let to_close = [];
           let stale = [];
