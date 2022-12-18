@@ -9,6 +9,7 @@ jobs:
     # if:  github.repository_owner == 'w3f'
     runs-on: ubuntu-latest
     steps:
+    - run: npm install node-fetch
     - uses: actions/github-script@v6
       with:
         result-encoding: string
