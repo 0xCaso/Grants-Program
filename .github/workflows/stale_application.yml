@@ -87,9 +87,9 @@ jobs:
             const message = 
               `DELAYED APPS REPORT:`+'\n'+
               `--------------------`+'\n'+
-              `${changes_message}`+
-              `${ready_message}`+
-              `${others_message}`
+              `${closed_message}`+
+              `${to_close_message}`+
+              `${stale_message}`
             return message
           }
     - uses: fadenb/matrix-chat-message@v0.0.6
