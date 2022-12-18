@@ -14,7 +14,7 @@ jobs:
       with:
         result-encoding: string
         script: |
-          const fetch = require('node-fetch');
+          import fetch from 'node-fetch';
           const openPRs = await (await fetch("https://api.github.com/repos/w3f/Grants-Program/pulls")).json();
           let closed = [];
           let to_close = [];
