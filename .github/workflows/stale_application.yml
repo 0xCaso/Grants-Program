@@ -15,7 +15,7 @@ jobs:
         result-encoding: string
         script: |
           const axios = require('axios');
-          const openPRs = (await axios.get("https://api.github.com/repos/w3f/Grants-Program/pulls")).data;
+          const openPRs = (await axios.get("https://api.github.com/repos/0xCaso/Grants-Program/pulls")).data;
           let closed = [];
           let to_close = [];
           let stale = [];
@@ -92,7 +92,8 @@ jobs:
               `${stale_message}`
             return message
           }
-    - uses: fadenb/matrix-chat-message@v0.0.6
+    - if: steps.mark_as_stale.outputs.result != ''
+      uses: fadenb/matrix-chat-message@v0.0.6
       with:
         homeserver: 'matrix.web3.foundation'
         token: ${{ secrets.MATRIX_TOKEN }}
