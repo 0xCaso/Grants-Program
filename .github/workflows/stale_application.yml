@@ -60,6 +60,7 @@ jobs:
             }
           }
           if (closed.length || to_close.length || stale.length) {
+            console.log("HELLO")
             let closed_message = ""
             if (closed.length) {
               closed_message = "Closed: "
