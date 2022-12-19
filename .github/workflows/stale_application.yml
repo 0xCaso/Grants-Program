@@ -20,14 +20,11 @@ jobs:
           let to_close = [];
           let stale = [];
           const today = new Date();
-          console.log("1")
           for (const pr of openPRs) {
-            console.log("2")
             let deadline = new Date(pr.updated_at)
             deadline.setDate(deadline.getDate() + 14);
             // if (today > deadline) {
             if (true) {
-              console.log("3")
               let find_label = pr.labels.filter(function(label) { 
                 return label.name === "to close"
               });
@@ -64,7 +61,6 @@ jobs:
             }
           }
           if (closed.length || to_close.length || stale.length) {
-            console.log("4")
             let closed_message = ""
             if (closed.length) {
               closed_message = "Closed: "
@@ -95,6 +91,7 @@ jobs:
               `${closed_message}`+
               `${to_close_message}`+
               `${stale_message}`
+            console.log(message)
             return message
           }
     - if: steps.mark_as_stale.outputs.result != ''
