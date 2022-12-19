@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: npm install axios
-    - uses: actions/github-script@v6
+    - id: js-script
+      uses: actions/github-script@v6
       with:
         result-encoding: string
         script: |
@@ -94,11 +95,11 @@ jobs:
             console.log(message)
             return message
           }
-    - if: ${{ steps.mark_as_stale.outputs.result != '' }}
+    - if: steps.js-script.outputs.result != ''
       uses: fadenb/matrix-chat-message@v0.0.6
       with:
         homeserver: 'matrix.web3.foundation'
         token: ${{ secrets.MATRIX_TOKEN }}
         channel: ${{ secrets.MATRIX_CHANNEL_ID }}
         message: |
-          ${{ steps.mark_as_stale.outputs.result }}
+          ${{ steps.js-script.outputs.result }}
