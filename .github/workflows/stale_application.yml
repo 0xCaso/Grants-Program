@@ -25,7 +25,8 @@ jobs:
             console.log("2")
             let deadline = new Date(pr.updated_at)
             deadline.setDate(deadline.getDate() + 14);
-            if (today+100 > deadline) {
+            // if (today > deadline) {
+            if (true) {
               console.log("3")
               let find_label = pr.labels.filter(function(label) { 
                 return label.name === "to close"
