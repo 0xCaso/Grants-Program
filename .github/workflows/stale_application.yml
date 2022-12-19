@@ -23,7 +23,7 @@ jobs:
           for (const pr of openPRs) {
             let deadline = new Date(pr.updated_at)
             // deadline.setDate(deadline.getDate() + 14);
-            if (today > deadline) {
+            if (today+10 > deadline) {
               let find_label = pr.labels.filter(function(label) { 
                 return label.name === "to close"
               });
