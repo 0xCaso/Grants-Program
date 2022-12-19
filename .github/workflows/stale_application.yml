@@ -42,12 +42,12 @@ jobs:
                   return label.name === "stale"
                 });
                 if (find_label.length) {
-                  /*await github.rest.issues.addLabels({
+                  await github.rest.issues.addLabels({
                     issue_number: pr.number,
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     labels: ["to close"]
-                  })*/
+                  })
                   to_close.push(pr.number)
                 } else {
                   /*await github.rest.issues.addLabels({

@@ -31,4 +31,4 @@ jobs:
           token: ${{ secrets.MATRIX_TOKEN }}
           channel: ${{ secrets.MATRIX_CHANNEL_ID }}
           message: |
-            WEBSITE BUILD FAILED: [This](https://github.com/w3f/Grants-Program/commit/${{ github.sha }}) is the last push commit.
+            WEBSITE BUILD FAILED: See this action's [run](https://github.com/0xCaso/Grants-Program/actions/runs/${{ github.run_id }}).
