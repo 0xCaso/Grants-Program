@@ -2,7 +2,7 @@ name: Stale checker
 
 on:
   schedule:
-    - cron: "30 10 * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   mark_as_stale:
@@ -19,10 +19,10 @@ jobs:
           let closed = [];
           let to_close = [];
           let stale = [];
+          const today = new Date();
           for (const pr of openPRs) {
             let deadline = new Date(pr.updated_at)
-            deadline.setDate(deadline.getDate() + 1);
-            const today = new Date();
+            // deadline.setDate(deadline.getDate() + 14);
             if (today > deadline) {
               let find_label = pr.labels.filter(function(label) { 
                 return label.name === "to close"
