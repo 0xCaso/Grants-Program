@@ -1,7 +1,7 @@
 # Web3 Foundation Grants Program<!-- omit in toc -->
 
 <p align="center">
-  <img src="static/img/Grants_Program.png" style="width:1300px";>
+  <img src="static/img/Grants_Program.png" style="width:1300px";
 </p>
 
 
