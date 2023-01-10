@@ -1,8 +1,13 @@
 name: Stale checker
 
+#on:
+#  schedule:
+#    - cron: "30 10 * * *"
+
 on:
-  schedule:
-    - cron: "30 10 * * *"
+  push:
+    branches:
+      - 'placeholder/**'
 
 jobs:
   mark_as_stale:
