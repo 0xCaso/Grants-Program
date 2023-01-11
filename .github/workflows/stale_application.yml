@@ -26,11 +26,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         stale-timeout: -1
     - if: steps.stale.outputs.message != ''
-      run: echo "The message was ${{ steps.stale.outputs.message }}"
-      # uses: fadenb/matrix-chat-message@v0.0.6
-      # with:
-      #   homeserver: 'matrix.web3.foundation'
-      #   token: ${{ secrets.MATRIX_TOKEN }}
-      #   channel: ${{ secrets.MATRIX_CHANNEL_ID }}
-      #   message: |
-      #     ${{ steps.js-script.outputs.result }}
+      # run: echo "The message was ${{ steps.stale.outputs.message }}"
+      uses: fadenb/matrix-chat-message@v0.0.6
+      with:
+        homeserver: 'matrix.web3.foundation'
+        token: ${{ secrets.MATRIX_TOKEN }}
+        channel: ${{ secrets.MATRIX_CHANNEL_ID }}
+        message: |
+          ${{ steps.stale.outputs.message }}
