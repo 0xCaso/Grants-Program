@@ -4,10 +4,14 @@ name: Stale checker
 #  schedule:
 #    - cron: "30 10 * * *"
 
+# on:
+#   push:
+#     branches:
+#       - 'placeholder/**'
+
 on:
-  push:
-    branches:
-      - 'placeholder/**'
+  pull_request:
+    types: [opened]
 
 jobs:
   mark_as_stale:
@@ -15,96 +19,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: npm install axios
-    - id: js-script
-      uses: actions/github-script@v6
+    - id: stale
+      uses: 0xCaso/label-stale-pull-requests@v1
       with:
-        result-encoding: string
-        script: |
-          const axios = require('axios');
-          const openPRs = (await axios.get("https://api.github.com/repos/0xCaso/Grants-Program/pulls")).data;
-          let closed = [];
-          let to_close = [];
-          let stale = [];
-          const today = new Date();
-          for (const pr of openPRs) {
-            let deadline = new Date(pr.updated_at)
-            deadline.setDate(deadline.getDate() + 14);
-            // if (today > deadline) {
-            if (true) {
-              let find_label = pr.labels.filter(function(label) { 
-                return label.name === "to close"
-              });
-              if (find_label.length) {
-                /*await github.rest.pulls.update({
-                  pull_number: pr.number,
-                  state: "closed",
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                })*/
-                closed.push(pr.number)
-              } else {
-                find_label = pr.labels.filter(function(label) { 
-                  return label.name === "stale"
-                });
-                if (find_label.length) {
-                  await github.rest.issues.addLabels({
-                    issue_number: pr.number,
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    labels: ["to close"]
-                  })
-                  to_close.push(pr.number)
-                } else {
-                  /*await github.rest.issues.addLabels({
-                    issue_number: pr.number,
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    labels: ["stale"]
-                  })*/
-                  stale.push(pr.number)
-                }
-              }
-            }
-          }
-          if (closed.length || to_close.length || stale.length) {
-            let closed_message = ""
-            if (closed.length) {
-              closed_message = "Closed: "
-              for (const closed_pr of closed) {
-                  closed_message += `[#${closed_pr}](https://github.com/w3f/Grants-Program/pull/${closed_pr}), `
-              }
-              closed_message = closed_message.slice(0, -2) + '\n'
-            }
-            let to_close_message = ""
-            if (to_close.length) {
-              to_close_message = "To close: "
-              for (const to_close_pr of to_close) {
-                to_close_message += `[#${to_close_pr}](https://github.com/w3f/Grants-Program/pull/${to_close_pr}), `
-              }
-              to_close_message = to_close_message.slice(0, -2) + '\n'
-            }
-            let stale_message = ""
-            if (stale.length) {
-              stale_message = "Stale: "
-              for (const stale_pr of stale) {
-                stale_message += `[#${stale_pr}](https://github.com/w3f/Grants-Program/pull/${stale_pr}), `
-              }
-              stale_message = stale_message.slice(0, -2)
-            }
-            const message = 
-              `DELAYED APPS REPORT:`+'\n'+
-              `--------------------`+'\n'+
-              `${closed_message}`+
-              `${to_close_message}`+
-              `${stale_message}`
-            console.log(message)
-            return message
-          }
-    - if: steps.js-script.outputs.result != ''
-      uses: fadenb/matrix-chat-message@v0.0.6
-      with:
-        homeserver: 'matrix.web3.foundation'
-        token: ${{ secrets.MATRIX_TOKEN }}
-        channel: ${{ secrets.MATRIX_CHANNEL_ID }}
-        message: |
-          ${{ steps.js-script.outputs.result }}
+        context: ${{ toJSON(github) }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        stale-timeout: -1
+    - if: steps.stale.outputs.message != ''
+      run: echo "The message was ${{ steps.stale.outputs.message }}"
+      # uses: fadenb/matrix-chat-message@v0.0.6
+      # with:
+      #   homeserver: 'matrix.web3.foundation'
+      #   token: ${{ secrets.MATRIX_TOKEN }}
+      #   channel: ${{ secrets.MATRIX_CHANNEL_ID }}
+      #   message: |
+      #     ${{ steps.js-script.outputs.result }}
