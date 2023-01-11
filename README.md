@@ -13,7 +13,7 @@
 - [:level\_slider: Levels](#level_slider-levels)
 - [:pencil: Process](#pencil-process)
   - [1. Application](#1-application)
-  - [2. Application Review](#2-application-review)
+  - [2. Application Review](#2-application-revew)
   - [3. Milestone Delivery and Payment](#3-milestone-delivery-and-payment)
   - [Changes to a Grant after Approval](#changes-to-a-grant-after-approval)
 - [:mailbox\_with\_mail: Suggest a Project](#mailbox_with_mail-suggest-a-project)
