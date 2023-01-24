@@ -1,7 +1,3 @@
-> :christmas_tree: Please note that the review process might take longer than usual until January 6, 2023. Merry Christmas and Happy New Year!  :christmas_tree:
-
-___
-
 # Web3 Foundation Grants Program<!-- omit in toc -->
 
 <p align="center">
@@ -326,6 +322,7 @@ Below is a list of other grant programs in the Polkadot/Substrate ecosystem:
 - [Interlay Labs Grants Program](https://github.com/interlay/Grants-Program)
 - [Moonbeam Grants Program](https://moonbeam.foundation/grants/)
 - [OAK’s Developer Grants](https://oak.tech/community/grants/)
+- [peaq Ecosystem Grant Program](https://www.peaq.network/grant-program) 
 - [Picasso / Composable Grants Program](https://grants.composable.finance)
 - [SubQuery Grants Programme](https://subquery.network/grants)
 
